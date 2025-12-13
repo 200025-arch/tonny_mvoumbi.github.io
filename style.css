@@ -74,7 +74,7 @@ body{
   color:rgba(255,255,255,.9);
 }
 
-/* ================= NAVBAR (AMÉLIORÉE) ================= */
+/* ================= NAVBAR ================= */
 .navbar-apropos-bas{
   position:absolute;
   bottom:0;
@@ -95,24 +95,16 @@ body{
   gap:40px;
 }
 
-.navbar-apropos-bas li{
-  position:relative;
-}
-
 .navbar-apropos-bas a{
   position:relative;
   color:var(--text);
   text-decoration:none;
   font-size:0.95rem;
   font-weight:500;
-  letter-spacing:.3px;
   padding:6px 2px;
-  transition:
-    color .3s ease,
-    transform .3s ease;
+  transition:color .3s ease, transform .3s ease;
 }
 
-/* underline animé */
 .navbar-apropos-bas a::after{
   content:"";
   position:absolute;
@@ -121,28 +113,22 @@ body{
   width:0;
   height:2px;
   background:var(--accent);
-  box-shadow:0 0 10px rgba(241,183,42,.6);
   transition:width .3s ease;
 }
 
-/* hover */
 .navbar-apropos-bas a:hover{
   color:var(--accent);
   transform:translateY(-2px);
 }
 
-.navbar-apropos-bas a:hover::after{
+.navbar-apropos-bas a:hover::after,
+.navbar-apropos-bas a.active::after{
   width:100%;
 }
 
-/* actif */
 .navbar-apropos-bas a.active{
   color:var(--accent);
   font-weight:600;
-}
-
-.navbar-apropos-bas a.active::after{
-  width:100%;
 }
 
 /* ================= HERO ================= */
@@ -238,16 +224,123 @@ body{
   text-decoration:none;
 }
 
+/* ================================================= */
+/* ============ PAGE 2 – PROJETS EN CERCLES ========= */
+/* ================================================= */
+
+/* Scope STRICT page projets */
+.projects-section{
+  position:relative;
+  overflow:hidden;
+  padding-bottom:100px;
+}
+
+/* === GRILLE INLINE (3 PAR LIGNE) === */
+.projects-section .projects-bubbles{
+  max-width:1400px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:80px 40px;
+  justify-items:center;
+}
+
+/* === CARTE PROJET (INLINE, PAS BLOC) === */
+.projects-section .project-bubble{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+
+  background:none;
+  box-shadow:none;
+  border:none;
+  transform:none;
+}
+
+/* === CERCLE IMAGE ×3 === */
+.projects-section .project-bubble img{
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  object-fit:cover;
+
+  box-shadow:
+    0 0 0 8px rgba(241,183,42,.25),
+    0 0 70px rgba(241,183,42,.55);
+
+  transition:
+    transform .7s ease,
+    box-shadow .7s ease;
+}
+
+/* Hover premium conservé */
+.projects-section .project-bubble:hover img{
+  transform:scale(1.08);
+  box-shadow:
+    0 0 0 10px rgba(241,183,42,.45),
+    0 0 110px rgba(241,183,42,.85);
+}
+
+/* === TEXTE SOUS LE CERCLE === */
+.projects-section .bubble-info{
+  margin-top:26px;
+  max-width:420px;
+}
+
+.projects-section .bubble-info h3{
+  font-size:1.15rem;
+  color:var(--accent);
+  margin-bottom:8px;
+}
+
+.projects-section .bubble-info p{
+  font-size:.9rem;
+  color:var(--muted);
+  margin-bottom:16px;
+}
+
+/* === BOUTON === */
+.projects-section .btn-bubble{
+  display:inline-block;
+  padding:8px 20px;
+  border-radius:22px;
+  background:rgba(241,183,42,.18);
+  color:var(--accent);
+  font-size:.8rem;
+  font-weight:600;
+  text-decoration:none;
+  transition:.3s ease;
+}
+
+.projects-section .btn-bubble:hover{
+  background:var(--accent);
+  color:#1f2937;
+}
+
 /* ================= RESPONSIVE ================= */
-@media(max-width:900px){
-  .navbar-apropos-bas ul{
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:20px;
+
+/* Tablette : 2 par ligne */
+@media(max-width:1200px){
+  .projects-section .projects-bubbles{
+    grid-template-columns:repeat(2, 1fr);
+  }
+
+  .projects-section .project-bubble img{
+    width:340px;
+    height:340px;
   }
 }
 
-@media(max-width:800px){
-  .banniere-contenu h1{font-size:2rem}
-  .banniere-contenu{padding:25px}
+/* Mobile : 1 par ligne */
+@media(max-width:700px){
+  .projects-section .projects-bubbles{
+    grid-template-columns:1fr;
+  }
+
+  .projects-section .project-bubble img{
+    width:260px;
+    height:260px;
+  }
 }
+

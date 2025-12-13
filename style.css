@@ -344,3 +344,133 @@ body{
   }
 }
 
+/* ================================================= */
+/* ===== PAGE 3 – AUTOMATISATIONS (RENDUS PREMIUM) == */
+/* ================================================= */
+
+.automations-section{
+  position:relative;
+  overflow:hidden;
+  padding-bottom:120px;
+}
+
+/* Grille verticale propre */
+.automation-grid{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:60px;
+}
+
+/* Carte automation : vrai socle visuel */
+.automations-section .automation-card{
+  position:relative;
+  display:flex;
+  gap:40px;
+  align-items:center;
+
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.06),
+    rgba(255,255,255,.015)
+  );
+  backdrop-filter:blur(14px);
+
+  padding:40px;
+  border-radius:26px;
+  box-shadow:var(--shadow);
+
+  transition:
+    transform .6s ease,
+    box-shadow .6s ease;
+}
+
+/* Hover premium clair */
+.automations-section .automation-card:hover{
+  transform:translateY(-10px);
+  box-shadow:
+    0 0 45px rgba(241,183,42,.35),
+    inset 0 0 25px rgba(255,255,255,.04);
+}
+
+/* Image bien mise en valeur */
+.automations-section .automation-card img{
+  width:220px;
+  height:auto;
+  border-radius:18px;
+  box-shadow:0 0 30px rgba(0,0,0,.45);
+  flex-shrink:0;
+}
+
+/* Contenu */
+.automation-content h2{
+  color:var(--accent);
+  margin-bottom:10px;
+}
+
+.automation-content p{
+  color:var(--muted);
+  font-size:.95rem;
+}
+
+/* Bouton cohérent site */
+.btn-primary{
+  display:inline-block;
+  padding:10px 22px;
+  border-radius:24px;
+  background:rgba(241,183,42,.18);
+  color:var(--accent);
+  font-weight:600;
+  text-decoration:none;
+  transition:.3s ease;
+}
+
+.btn-primary:hover{
+  background:var(--accent);
+  color:#1f2937;
+}
+
+@keyframes driftX {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(var(--drift)); }
+  100% { transform: translateX(0); }
+}
+
+/* Base : animation inactive tant que JS n’a pas injecté les variables */
+.automations-section .automation-card{
+  --drift: 0px;
+}
+
+/* ================= PARTICULES ================= */
+
+.automations-section .raindrop{
+  position:absolute;
+  background:rgba(241,183,42,.6);
+  border-radius:50%;
+  filter:blur(1px);
+  opacity:.25;
+  animation: fall linear infinite;
+}
+
+.automations-section .white-bubble{
+  position:absolute;
+  background:rgba(255,255,255,.7);
+  border-radius:50%;
+  filter:blur(2px);
+  opacity:.2;
+  animation: floatBubble ease-in-out infinite;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+  .automations-section .automation-card{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .automations-section .automation-card img{
+    width:180px;
+  }
+}
